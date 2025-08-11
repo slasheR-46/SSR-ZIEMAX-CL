@@ -1,6 +1,6 @@
 # SSR ZIEMAX CL
 
-Este es un proyecto desarrollado con [Next.js](https://nextjs.org/), un framework de React que permite renderizado del lado del servidor (SSR) y generación de sitios estáticos (SSG) de forma sencilla.
+Este es un proyecto desarrollado con [Next.js](https://nextjs.org/), un framework de React que permite renderizado del lado del servidor (SSR) y generación de sitios estáticos (SSG).
 
 ## 🚀 Características principales
 
