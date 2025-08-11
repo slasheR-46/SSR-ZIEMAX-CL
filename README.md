@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SSR ZIEMAX CL
 
-## Getting Started
+Este es un proyecto desarrollado con [Next.js](https://nextjs.org/), un framework de React que permite renderizado del lado del servidor (SSR) y generación de sitios estáticos (SSG) de forma sencilla.
 
-First, run the development server:
+## 🚀 Características principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ⚡️ Renderizado híbrido (SSG/SSR)
+- 🔄 Rutas basadas en el sistema de archivos
+- ✅ Soporte para API Routes
+- 💅 Tailwind
+  📦 Listo para producción
+
+## 📁 Estructura del Proyecto (Inicial)
+
+```
+.
+├── public/ # Archivos estáticos
+├── pages/ # Páginas del sitio web
+│ ├── api/ # Endpoints API (funciones serverless)
+├── styles/ # Archivos CSS o Tailwind config
+├── components/ # Componentes reutilizables
+├── utils/ # Funciones auxiliares
+├── hooks/ # Custom hooks (si aplica)
+├── next.config.js # Configuración de Next.js
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Instalación
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clona el repositorio:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/''
+cd al repo
+```
 
-## Learn More
+## 📦 Instala las dependencias
 
-To learn more about Next.js, take a look at the following resources:
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚧 Scripts disponibles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npm run dev # Levanta el servidor en desarrollo (http://localhost:3000)
+npm run build # Compila el proyecto para producción
+npm start # Inicia el servidor en modo producción
+npm run lint # Ejecuta el linter
+```
 
-## Deploy on Vercel
+## 🚀 Despliegue
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+Este proyecto se puede desplegar fácilmente en plataformas como:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel
+
+Netlify
+
+Render
+```
+
+## 📌 Requisitos
+
+```
+Node.js >= 18
+```
