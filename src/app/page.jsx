@@ -1,3 +1,9 @@
+import { Button } from "flowbite-react";
+
 export default function page() {
-  return <div className='text-purple-500'>El Genesis de SSR</div>;
+  return (
+    <>
+      <Button>El Genesis de SSR</Button>
+    </>
+  );
 }
