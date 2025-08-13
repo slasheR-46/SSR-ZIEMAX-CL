@@ -15,8 +15,16 @@ import * as THREE from "three";
  *      radius (default 1.8)
  *    }
  */
-export default function DistortedSphere({ mouse, settings }) {
+export default function DistortedSphere({
+  mouse,
+  settings,
+  mouseFactor = 0.85, // multiplica cuánto rota según el mouse (antes 0.4)
+  followSpeed = 0.16, // lerp de seguimiento (antes 0.08)
+  parallaxFactor = 0.5, // cuánto se desplaza la esfera en X/Y por el mouse
+  enableParallax = true,
+}) {
   const mesh = useRef();
+  const groupRef = useRef();
   const materialRef = useRef();
   const targetColor = useMemo(() => new THREE.Color(settings.color), [settings.color]);
 
@@ -24,11 +32,32 @@ export default function DistortedSphere({ mouse, settings }) {
 
   useFrame(() => {
     if (!mesh.current) return;
-    mesh.current.rotation.y += 0.004; // base slow spin
+    mesh.current.rotation.y += 0.004; // spin base
 
     if (mouse?.current) {
-      mesh.current.rotation.x = THREE.MathUtils.lerp(mesh.current.rotation.x, mouse.current.y * 0.4, 0.08);
-      mesh.current.rotation.y = THREE.MathUtils.lerp(mesh.current.rotation.y, mouse.current.x * 0.4, 0.08);
+      // Rotación más reactiva
+      mesh.current.rotation.x = THREE.MathUtils.lerp(
+        mesh.current.rotation.x,
+        mouse.current.y * mouseFactor,
+        followSpeed
+      );
+      mesh.current.rotation.y = THREE.MathUtils.lerp(
+        mesh.current.rotation.y,
+        mouse.current.x * mouseFactor,
+        followSpeed
+      );
+      if (enableParallax && groupRef.current) {
+        groupRef.current.position.x = THREE.MathUtils.lerp(
+          groupRef.current.position.x,
+          mouse.current.x * parallaxFactor,
+          followSpeed * 0.9
+        );
+        groupRef.current.position.y = THREE.MathUtils.lerp(
+          groupRef.current.position.y,
+          mouse.current.y * parallaxFactor,
+          followSpeed * 0.9
+        );
+      }
     }
 
     if (materialRef.current) {
@@ -45,17 +74,19 @@ export default function DistortedSphere({ mouse, settings }) {
       speed={settings.floatSpeed}
       rotationIntensity={settings.rotationIntensity}
       floatIntensity={settings.floatIntensity}>
-      <mesh ref={mesh}>
-        <sphereGeometry args={[radius, 128, 128]} />
-        <MeshDistortMaterial
-          ref={materialRef}
-          color={settings.color}
-          distort={settings.distort}
-          speed={settings.speed}
-          roughness={settings.roughness}
-          metalness={settings.metalness}
-        />
-      </mesh>
+      <group ref={groupRef}>
+        <mesh ref={mesh}>
+          <sphereGeometry args={[radius, 128, 128]} />
+          <MeshDistortMaterial
+            ref={materialRef}
+            color={settings.color}
+            distort={settings.distort}
+            speed={settings.speed}
+            roughness={settings.roughness}
+            metalness={settings.metalness}
+          />
+        </mesh>
+      </group>
     </Float>
   );
 }

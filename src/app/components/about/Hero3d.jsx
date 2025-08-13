@@ -65,7 +65,14 @@ export default function Hero3D() {
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <DistortedSphere mouse={mouse} settings={tabs[active]} />
+          <DistortedSphere
+            mouse={mouse}
+            settings={tabs[active]}
+            mouseFactor={1.4} // más giro con el mouse
+            followSpeed={0.22} // sigue más rápido
+            parallaxFactor={0.9} // se desplaza más en pantalla
+            enableParallax
+          />
         </Suspense>
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
